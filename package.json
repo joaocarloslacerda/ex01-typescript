@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start": "ts-node-dev --respawn index.ts"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0"
+  }
+}
