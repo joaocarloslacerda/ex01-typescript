@@ -1,4 +1,4 @@
-//string
+//interface para objetos
 interface UserDomain {
     firstname: string;
     surname: string;
@@ -6,18 +6,29 @@ interface UserDomain {
     status: boolean;
 };
 
+interface Product {
+    name: string;
+    weight: number;
+    expirationDate: Date;
+    price?: number;
+    donation: boolean;
+}
+
+//string
 const user: UserDomain = {
-    firstname: "João",
-    surname: "Lacerda",
+    firstname: "joão",
+    surname: "lacerda",
     password: "teste123",
     status: true,
 };
 
 function concatenaNome(user: UserDomain): string{
 
-    return `User: ${user.firstname} ${user.surname} \nPassword: ${user.password} \nStatus: ${user.status}`
+    return `User: ${user.firstname.charAt(0).toUpperCase() + user.firstname.slice(1).toLowerCase()
+                  } ${user.surname.charAt(0).toUpperCase() + user.surname.slice(1).toLowerCase()                        
+            } \nPassword: ${user.password} \nStatus: ${user.status}`
 };
-console.log("--------------------")
+console.log("----------String----------")
 console.log(concatenaNome(user))
 
 //number
@@ -28,10 +39,10 @@ function multiplyValues(valueOne: number, valueTwo: number): Number{
 
     return valueOne*valueTwo
 };
-console.log("--------------------")
+console.log("----------Number----------")
 console.log(multiplyValues(valueOne, valueTwo))
 
-//Array
+//Array + reutilização de interface
 const users: UserDomain[] = [
     {
         firstname: "João",
@@ -59,11 +70,47 @@ function findUser(users: UserDomain[]):UserDomain[]{
     return arrayFilter
 }
 
-console.log("--------------------")
+console.log("----------Array----------")
 console.log(findUser(users))
 
 
 //Boolean
+const stock: Product[] = [
+    {
+        name: "Água",
+        weight: 500,
+        expirationDate: new Date('2024-12-12'),
+        donation: true,
+    },
+    {
+        name: "Vinho",
+        weight: 1,
+        expirationDate: new Date('2024-10-12'),
+        price: 5.0,
+        donation: false,
+    },
+    {
+        name: "Arroz",
+        weight: 5,
+        expirationDate: new Date('2024-09-12'),
+        donation: true,
+    }
+];
+
+function getProduct(stock: Product[]): string[]{
+    
+    let arrayStock: string[] = []
+
+    stock.forEach((element) => {
+        if(element.donation){
+            arrayStock.push(`Produto: ${element.name} Tamanho: ${element.weight} \nData validade: ${element.expirationDate}`)
+            // arrayStock.push(element)
+        }
+    });
+    return arrayStock
+}
+console.log("----------Boolean----------")
+console.log(getProduct(stock))
 
 //Interface para objetos
 
