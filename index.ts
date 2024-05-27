@@ -97,22 +97,27 @@ const stock: Product[] = [
     }
 ];
 
-function getProduct(stock: Product[]): string[]{
+function getProduct(stock: Product[], productDonation?: boolean): Product[]{
     
-    let arrayStock: string[] = []
+    let arrayStock: Product[] = []
 
-    stock.forEach((element) => {
-        if(element.donation){
-            arrayStock.push(`Produto: ${element.name} Tamanho: ${element.weight} \nData validade: ${element.expirationDate}`)
-            // arrayStock.push(element)
+    console.log(productDonation)
+    productDonation == true || false ? (productDonation = productDonation) : (arrayStock = stock.slice())
+
+    for(let element of stock){
+        if(element.donation === productDonation){
+            arrayStock.push(element)
         }
-    });
-    return arrayStock
+    }
+    
+    return arrayStock;
 }
 console.log("----------Boolean----------")
+console.log(getProduct(stock, false))
+console.log("sem false")
 console.log(getProduct(stock))
 
-//Interface para objetos
+
 
 //Type para tipos únicos
 
